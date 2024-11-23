@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+const env = dotenv.config().parsed;
 
 const connectDB = () => {
-    mongoose.connect(`mongodb://localhost:27017`, {
-        dbName: "wegoform"
+    // localhost akan berubah mengikuti server productionnya
+    mongoose.connect(env.DB_URI || `mongodb://localhost/${env.DB_NAME}`, {
+        dbName: env.DB_NAME
     })
 
     const conn = mongoose.connection

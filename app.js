@@ -1,7 +1,9 @@
 import express from "express";
 import apiRouter from "./routes/api.js";
-import mongoose from "mongoose";
 import connectDB from "./connection.js";
+import dotenv from "dotenv";
+
+const env = dotenv.config().parsed;
 
 const app = express();
 
@@ -21,7 +23,7 @@ app.use((req, res) => {
 
 connectDB();
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(env.APP_PORT, () => {
+  console.log(`Server is running on port ${env.APP_PORT}`);
 });
 
